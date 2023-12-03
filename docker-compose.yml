@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+    image: api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8888 --reload
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/src
+    networks:
+      - app-network
+
+  jupyterlab:
+    image: jupyter/scipy-notebook
+    container_name: jupyterlab
+    ports:
+      - 8889:8889
+    command:  jupyter lab --ip=0.0.0.0 --port=8889 --allow-root
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./tasks:/home/jovyan/work/tasks
+      - ./data:/home/jovyan/work/data
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    networks:
+      - jupyterlab-network
+
+networks:
+  app-network: 
+    external: true
+  jupyterlab-network:
+    external: true
