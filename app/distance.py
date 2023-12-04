@@ -27,7 +27,9 @@ async def get_points():
 
 
 @router.post("/points/closest", response_model=PointResponse)
-async def post_closest_point(point: PointResponse):
+async def post_closest_point(
+    point: PointResponse = PointResponse(name="City 2", x=17, y=11)
+):
     """
     get the closes point from the provided points.
     args:

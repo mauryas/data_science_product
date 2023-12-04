@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class PointResponse(BaseModel):
-    name: str
+    name: str = None
     x: int = None
     y: int = None
 
