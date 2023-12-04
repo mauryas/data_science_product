@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas import DataFrame
 
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn.tree import DecisionTreeClassifier, export_text
@@ -18,10 +19,10 @@ class FeatureEnginerring:
 
     Methods
     -------
-    transform_ordinal(df: pd.DataFrame):
+    transform_ordinal(df: DataFrame):
         transform ordinal features
 
-    transform_one_hot(df: pd.DataFrame):
+    transform_one_hot(df: DataFrame):
         transform feature to one hot encode
 
     """
@@ -29,13 +30,13 @@ class FeatureEnginerring:
     def __init__(self):
         self.ordinal_encoder = OrdinalEncoder()
 
-    def transform_ordinal(self, df: pd.DataFrame) -> pd.DataFrame:
+    def transform_ordinal(self, df: DataFrame) -> DataFrame:
         """
         Transform the age, income and credit rating based low to high.
         args:
-            df (pd.DataFrame): input data frame
+            df (DataFrame): input data frame
         return:
-            df_encoded (pd.DataFrame): ordinal encoded dataframe
+            df_encoded (DataFrame): ordinal encoded dataframe
         """
         ordinal_features = ["age", "income", "creditRating"]
         level_age = ["<=30", "30-40", ">40"]
@@ -48,17 +49,17 @@ class FeatureEnginerring:
         self.ordinal_encoder.fit(df[ordinal_features])
 
         enc_array = self.ordinal_encoder.transform(df[ordinal_features])
-        df_transformed = pd.DataFrame(enc_array, columns=ordinal_features)
+        df_transformed = DataFrame(enc_array, columns=ordinal_features)
 
         return df_transformed
 
-    def transform_one_hot(self, df: pd.DataFrame) -> pd.DataFrame:
+    def transform_one_hot(self, df: DataFrame) -> DataFrame:
         """
         One hot encode student
         args:
-            df (pd.DataFrame): input data frame
+            df (DataFrame): input data frame
         return:
-            df_encoded (pd.DataFrame): one hot encoded dataframe
+            df_encoded (DataFrame): one hot encoded dataframe
         """
 
         df_transformed = pd.get_dummies(df["student"], dtype=float)
@@ -83,16 +84,16 @@ class DecisionTreeTrainer:
 
     Methods
     -------
-    train_with_cross_validation(X: pd.DataFrame, y: pd.DataFrame):
+    train_with_cross_validation(X: DataFrame, y: DataFrame):
         cross validation
 
-    inverse_transform_ordinal(df: pd.DataFrame):
+    inverse_transform_ordinal(df: DataFrame):
         inverse transform ordinal features
 
-    transform_one_hot(df: pd.DataFrame):
+    transform_one_hot(df: DataFrame):
         transform feature to one hot encode
 
-    inverse_transform_one_hot(df: pd.DataFrame):
+    inverse_transform_one_hot(df: DataFrame):
         inverse transform feature from one hot encode
 
     """
@@ -102,38 +103,38 @@ class DecisionTreeTrainer:
         self.clf = DecisionTreeClassifier()
         self.kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
 
-    def train_with_cross_validation(self, X: pd.DataFrame, y: pd.DataFrame) -> float:
+    def train_with_cross_validation(self, X: DataFrame, y: DataFrame) -> float:
         """
-            Train decision tree using n-fold cross-validation 
+            Train decision tree using n-fold cross-validation.
             and print accuracies.
             args:
-                X (pd.DataFrame) - feature set
-                y (pd.DataFrame) - target
+                X (DataFrame) - feature set
+                y (DataFrame) - target
         """
         fold_accuracies = cross_val_score(self.clf, X, y, cv=self.kf)
 
         return fold_accuracies.mean()
 
-    def print_rules(self, X: pd.DataFrame, y: pd.DataFrame) -> None:
+    def print_rules(self, X: DataFrame, y: DataFrame) -> None:
         """
             Print decision tree rules.
             args:
-                X (pd.DataFrame) - feature set
-                y (pd.DataFrame) - target
+                X (DataFrame) - feature set
+                y (DataFrame) - target
         """
         self.clf.fit(X, y)
         tree_rules = export_text(self.clf, feature_names=list(X.columns))
         print("Decision Tree Rules:")
         print(tree_rules)
 
-    def preprocessing(self, df: pd.DataFrame) -> pd.DataFrame:
+    def preprocessing(self, df: DataFrame) -> DataFrame:
         """
         Convert age, income and credit score into ordinal and
         student as one hot.
         args:
-            df (pd.DataFrame): dataset
+            df (DataFrame): dataset
         return:
-            df_feature (pd.DataFrame): processed features
+            df_feature (DataFrame): processed features
         """
         fe = FeatureEnginerring()
 
@@ -143,4 +144,3 @@ class DecisionTreeTrainer:
         df_feature = pd.concat([df_ord, df_one_hot], axis=1)
 
         return df_feature
-

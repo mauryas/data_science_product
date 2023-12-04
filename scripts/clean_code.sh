@@ -22,4 +22,4 @@ black -l 79 app --check
 # Check imports
 isort app
 # Style checks
-flake8
+flake8 --exclude=.git,__pycache__,.ipynb_checkpoints,./.eggs/* --ignore=E123,E126,E501,W503

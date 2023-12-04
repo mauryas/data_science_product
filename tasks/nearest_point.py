@@ -23,7 +23,7 @@ class Point:
 
     Methods
     -------
-    print_point(): 
+    print_point():
         Prints the points as Point(name, (x, y)).
     """
 
@@ -90,7 +90,7 @@ class PointMap:
         add a point to the points
 
     calculate_closest_point(point: Point):
-        find the nearest point from the self.points 
+        find the nearest point from the self.points
         using euclidian distance.
 
     parse_dataframe(df: pd.DataFrame):
@@ -119,14 +119,14 @@ class PointMap:
         """
         Calculte the closes point from the list of points.
         args:
-            point (Point): the point for which we want to find 
+            point (Point): the point for which we want to find
                            the closes point.
         return:
             closest_point (Point): the closes point from the list.
         """
         if len(self.points) < 2:
             raise ValueError("Insufficient no. points to find closest point.")
-        
+
         closest_point = {"point": None, "distance": math.inf}
 
         for point_2 in self.points:
@@ -155,7 +155,7 @@ class PointMap:
         """
         for point in self.points:
             point.print_point()
-    
+
     def get_point_json(self) -> dict:
         points_json = []
         for point in self.points:
