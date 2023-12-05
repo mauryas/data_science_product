@@ -2,8 +2,8 @@ import pandas as pd
 from fastapi import APIRouter
 
 from app.models import Accuracy
-from tasks.constants import DECISION_TREE_TARGET
-from tasks.decision_tree import DecisionTreeTrainer
+from data_science_product.tasks.constants import DECISION_TREE_TARGET
+from data_science_product.tasks.decision_tree import DecisionTreeTrainer
 
 router = APIRouter()
 
