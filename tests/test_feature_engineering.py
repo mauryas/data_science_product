@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
-from data_science_product.tasks.decision_tree import FeatureEnginerring
+from tasks.decision_tree import FeatureEnginerring
 
 
 def test_transform_ordinal():
