@@ -10,9 +10,9 @@
   
 
   
-A sample project to demonstrate the use of different tools for development of production ready data science project. The solution for the task is developed as a python package and its use is demonstrated in a containerized Jupyter Lab notebook and a sample RESTful API based on FastAPI.
+A sample project to demonstrate the use of different tools for development of production ready data science project. The solution for the task is developed as a python package and its usage is demonstrated in a containerized Jupyter Lab notebook and a sample RESTful API based on FastAPI.
 
-The solution for the task is developed into a python module and available in the folder `/tasks`. Further examples can be found in `notebooks/01_task_solution.ipynb` and as API endpoints `/points/closest` and `/tree/train`. 
+The solution for the task is available in the folder `/tasks`. Further examples can be found in `notebooks/01_task_solution.ipynb` and as API endpoints `/points/closest` and `/tree/train`. 
 
   
 
@@ -60,7 +60,7 @@ JupyterLab is used for its interactive nature, ease of use, documentation featur
 
   
 
-While JupyterLab provides an analysis and prototyping use of package, Fast API provides possibility to serve a data science solution in a scalable and production ready solution with documentation.
+Fast API provides the possibility to serve a data science solution in a scalable and production-ready solution. The swagger UI provides an interactive with documentation of the API.
 
   
 
@@ -143,17 +143,7 @@ Before proceeding, ensure you have installed the following:
   
 
 ```bash
-
-  
-
-  
-
 git  clone  git@github.com:mauryas/data_science_product.git
-
-  
-
-  
-
 ```
 
   
@@ -169,17 +159,7 @@ git  clone  git@github.com:mauryas/data_science_product.git
   
 
 ```bash
-
-  
-
-  
-
 cd  data_science_product
-
-  
-
-  
-
 ```
 
   
@@ -195,17 +175,7 @@ cd  data_science_product
   
 
 ```bash
-
-  
-
-  
-
 make  all
-
-  
-
-  
-
 ```
 
   
@@ -316,7 +286,7 @@ The Makefile provides convenient commands for managing the Docker services and e
   
   
 
-## Installing package
+## Installing project as python package
 
   
   
@@ -328,9 +298,11 @@ The package can be installed with command:
   
   
 
-```
-pip install git+https://github.com/mauryas/data_science_product.git
+```python
+pip install -e git+https://github.com/mauryas/data_science_product.git#egg=data_science_product
 
+# Test
+python -c "import data_science_product.tasks; print('Successfully installed')"
 ```
 
   
