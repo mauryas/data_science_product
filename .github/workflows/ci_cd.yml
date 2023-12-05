@@ -23,12 +23,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install -e .
 
     - name: Run Tests
-      run: pytest
+      run: python -m pytest tests/
 
     - name: Clean Code
-      run: script/clean_code.sh
+      run: ./script/clean_code.sh
 
     - name: Build Package
       run: python setup.py sdist bdist_wheel
@@ -59,7 +60,7 @@ jobs:
         path: dist/
 
     - name: Install Package
-      run: pip install .
+      run: pip install -e .
 
     - name: Verify Package
     # Update this step with actual deployment process
