@@ -2,7 +2,7 @@ import pandas as pd
 from fastapi import APIRouter
 
 from app.models import PointMapResponse, PointResponse
-from tasks.nearest_point import PointMap
+from data_science_product.tasks.nearest_point import PointMap
 
 router = APIRouter()
 
