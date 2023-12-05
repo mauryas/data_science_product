@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - ci_cd_pipeline
 
 jobs:
   build:
