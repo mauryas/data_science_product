@@ -1,5 +1,5 @@
 import pytest
-from tasks.nearest_point import Point, PointMap
+from data_science_product.tasks.nearest_point import Point, PointMap
 
 
 def test_add_point():

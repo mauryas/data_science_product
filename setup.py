@@ -28,7 +28,7 @@ setup(
     name="data_science_product",
     long_description=read_readme(readme_path),
     long_description_content_type="text/markdown",
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     setup_requires=["setuptools_scm"],
     install_requires=read_requirements(requirements_path),
     use_scm_version={

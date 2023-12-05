@@ -1,4 +1,4 @@
-from tasks.nearest_point import Point
+from data_science_product.tasks.nearest_point import Point
 
 
 def test_point_positive_creation():
