@@ -29,7 +29,10 @@ jobs:
       run: python -m pytest tests/
 
     - name: Clean Code
-      run: ./script/clean_code.sh
+      run: |
+         chmod +x ./scripts/clean_code.sh
+         ./scripts/clean_code.sh
+      shell: bash
 
     - name: Build Package
       run: python setup.py sdist bdist_wheel
