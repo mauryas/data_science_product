@@ -329,14 +329,7 @@ The package can be installed with command:
   
 
 ```
-
-  
-
 pip install git+https://github.com/mauryas/data_science_product.git
-
-  
-
-  
 
 ```
 
@@ -360,7 +353,7 @@ The code sample for usage of the custom package:
 ```
 import pandas as pd
 
-from tasks.nearest_point import PointMap, Point #module to calculte euclidian distance.
+from data_science_product.tasks.nearest_point import PointMap, Point #module to calculte euclidian distance.
 
 df = pd.read_csv('data/raw_data/sample_distance.csv') # load sample file
 
@@ -375,9 +368,6 @@ points_obj.print_points()
 closest_point = points_obj.calculate_closest_point(Point('City 2', 17, 11))
 
 closest_point.print_point()
-
-  
-
 ```
 
 #### Extract classification rules
@@ -387,9 +377,9 @@ import pandas as pd
 
   
 
-from tasks.decision_tree import DecisionTreeTrainer, FeatureEnginerring
+from data_science_product.tasks.decision_tree import DecisionTreeTrainer, FeatureEnginerring
 
-from tasks.constants import DECISION_TREE_TARGET
+from data_science_product.tasks.constants import DECISION_TREE_TARGET
 
   
 
